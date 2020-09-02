@@ -89,15 +89,6 @@ class Game{
 		console.log(this.state);
 	}
 
-
-	startGame() {
-		console.log(this.state);
-		this.startTime = Date.now();
-		this.state = "spawning";
-		console.log(this.state);
-	};
-
-
 	refresh() {
 		const now = Date.now();
 		const dt = (now - this.lastRefreshTime) / 1000.0;
@@ -239,7 +230,12 @@ class Game{
 			let txt3 = this.context.measureText(str3);
 			let center = (this.gridSize.center.x - 32 - txt3.width)/2;
 			this.context.fillText(str3, center,500);
-			this.canvas.addEventListener("click", this.startGame(), false);
+			this.canvas.addEventListener("click", function(){
+				console.log(this.state);
+				this.startTime = Date.now();
+				this.state = "spawning";
+				console.log(this.state);
+			}, false);
 		} 
 		else if (this.state!="newgame" && this.state!="gameover") {
 			
